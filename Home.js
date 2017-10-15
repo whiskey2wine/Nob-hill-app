@@ -2,30 +2,43 @@
  * Created by jayakornkarikan on 10/12/2017 AD.
  */
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, TouchableWithoutFeedback } from 'react-native';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
-import DismissKeyboard from 'dismissKeyboard';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 
 
 export default class Home extends React.Component {
     render() {
         return (
-            <TouchableWithoutFeedback onPress={()=>{DismissKeyboard()}}>
-            <View style={styles.container}>
-                <Text style={styles.logo}>Nob Hill</Text>
-                <View style={styles.group}>
-                    <FloatLabelTextInput placeholder={"Username"} autoFocus={true} autoCapitalize={'none'} autoCorrect={false} returnKeyType={'next'}/>
+            <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+                <View style={styles.logoContainer}>
+                    <Image
+                        style={styles.logo}
+                        source={require('./Octocat.png')}
+                        />
                 </View>
-                <View style={styles.group}>
-                    <FloatLabelTextInput placeholder={"Password"} autoCorrect={false} returnKeyType={'go'} secureTextEntry={true}/>
-                </View>
-                <View style={[styles.group,{marginTop: 10}]}>
+                <View style={styles.formContainer}>
+                    <TextInput
+                        style={styles.input}
+                        autoCorrect={false}
+                        autoCapitalize={'none'}
+                        placeholder={"Username"}
+                        placeholderTextColor={'rgba(255, 255, 255,0.6)'}
+                        returnKeyType={'next'}
+                        onSubmitEditing={() => this.passwordInput.focus()}
+                        enablesReturnKeyAutomatically={true}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        autoCorrect={false}
+                        autoCapitalize={'none'}
+                        placeholder={"Password"}
+                        placeholderTextColor={'rgba(255, 255, 255,0.6)'}
+                        returnKeyType={'go'}
+                        secureTextEntry={true}
+                        ref={(input) => this.passwordInput = input}
+                    />
                     <TouchableOpacity onPress={() => this.props.navigator.push({index: 3, title: 'Forget Password'})}>
                         <Text style={{fontSize: 12}}>Forget password</Text>
                     </TouchableOpacity>
-                </View>
-                <View style={{flexDirection: 'row', padding: 5, margin: 5, marginTop: 50}}>
                     <TouchableOpacity style={[styles.button,{backgroundColor: '#D95E54'}]} onPress={() => this.props.navigator.push({index: 1, title: 'Profile'})}>
                         <Text style={styles.textBtn}>Login</Text>
                     </TouchableOpacity>
@@ -33,9 +46,7 @@ export default class Home extends React.Component {
                         <Text style={styles.textBtn}>Register</Text>
                     </TouchableOpacity>
                 </View>
-                <KeyboardSpacer />
-            </View>
-            </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -43,27 +54,43 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
+        backgroundColor: 'rgba(175, 214, 240,1.0)',
     },
-    logo:{
-        fontSize: 40,
-        marginTop: 100,
-        marginBottom: 40
+    logoContainer: {
+        alignItems: 'center',
+        flexGrow: 1,
+        justifyContent: 'center',
+        marginTop: 40
+    },
+    logo: {
+        height: 100,
+        width: 100
+    },
+    title: {
+        color: '#FFF',
+        width: 160,
+        textAlign: 'center',
+        opacity: 0.9,
+        fontSize: 15
     },
     textBtn: {
         fontSize: 15,
-        color: '#fff'
+        color: '#fff',
+        textAlign: 'center',
+        fontWeight: '700'
     },
     button: {
-        padding: 10,
-        margin: 5,
-        borderRadius: 3
+        paddingVertical: 10,
+        marginVertical: 5
     },
-    group: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: 280
+    input: {
+        height: 40,
+        backgroundColor: 'rgba(255, 255, 255,0.2)',
+        marginBottom: 10,
+        color: '#FFF',
+        paddingHorizontal: 10
+    },
+    formContainer: {
+        padding: 20,
     }
 });

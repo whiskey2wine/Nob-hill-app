@@ -2,15 +2,11 @@
  * Created by jayakornkarikan on 10/12/2017 AD.
  */
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Image } from 'react-native';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import API from './api.js';
 
 
 export default class Home extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome',
-    };
 
     constructor(props) {
         super(props);
@@ -27,7 +23,7 @@ export default class Home extends React.Component {
             .catch((error)=>{});
     }
 
-    separator() {
+    static separator() {
         return (
             <View style={{height:1, backgroundColor: '#beebee'}}/>
         );
@@ -38,23 +34,23 @@ export default class Home extends React.Component {
 
         <View style={styles.container}>
             <Image style={styles.image} source={require('./deafult+profile.jpg')}/>
-            <View style={{borderRadius: 5, borderWidth: 2, borderColor: '#b4dee1', backgroundColor: '#b4dee1', width: 350}}>
+            <View style={{borderRadius: 5, borderWidth: 2, borderColor: 'rgba(255, 255, 255,0)', backgroundColor: 'rgba(255, 255, 255,0.2)', width: 350}}>
                 <View style={styles.group}>
                     <Text style={[styles.title,styles.textProf]}>Name</Text><Text style={styles.textProf}> {this.state.name}</Text>
                 </View>
-                {this.separator()}
+                {Home.separator()}
                 <View style={styles.group}>
                     <Text style={[styles.title,styles.textProf]}>Email</Text><Text style={styles.textProf}> {this.state.email}</Text>
                 </View>
-                {this.separator()}
+                {Home.separator()}
                 <View style={styles.group}>
                     <Text style={[styles.title,styles.textProf]}>ID</Text><Text style={styles.textProf}> {this.state.ID}</Text>
                 </View>
-                {this.separator()}
+                {Home.separator()}
                 <View style={styles.group}>
                     <Text style={[styles.title,styles.textProf]}>Mobile</Text><Text style={styles.textProf}> {this.state.mobile}</Text>
                 </View>
-                {this.separator()}
+                {Home.separator()}
                 <View style={styles.group}>
                     <Text style={[styles.title,styles.textProf]}>Balance</Text><Text style={styles.textProf}> {this.state.balance} Baht</Text>
                 </View>
@@ -67,7 +63,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(175, 214, 240,1.0)',
         padding: 10,
         paddingTop: 75,
         alignItems: 'center',

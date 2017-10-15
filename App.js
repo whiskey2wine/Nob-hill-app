@@ -1,17 +1,19 @@
 import React from 'react';
-import { StatusBar, TouchableHighlight, AppRegistry, StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
+import { StatusBar, TouchableWithoutFeedback, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Navigator } from 'react-native-deprecated-custom-components';
+import DismissKeyboard from 'dismissKeyboard';
 import Home from './Home.js';
 import Profile from './Profile';
 import Register from './register.js';
 import Forget from './forget.js';
 
-const routes = [{index: 0, title:'Login'},
+const routes = [{index: 0, title:'Nob Hill'},
     {index: 1, title: 'Profile'}, {index: 2, title: 'Register'}, {index: 3, title: 'Forget Password'}];
 
 export default class App extends React.Component {
   render() {
     return (
+        <TouchableWithoutFeedback onPress={DismissKeyboard}>
         <View style={styles.container}>
             <StatusBar barStyle={'light-content'}/>
           <Navigator
@@ -73,6 +75,7 @@ export default class App extends React.Component {
             }
             />
         </View>
+        </TouchableWithoutFeedback>
     );
   }
 }
@@ -82,10 +85,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     navigationBar: {
-        backgroundColor: '#9fc5d1',
+        backgroundColor: 'rgba(175, 214, 240,0.0)',
     },
     navigationBarText: {
-        color: 'white',
+        color: 'rgba(255, 255, 255,0.8)',
         padding: 10,
         fontSize: 15
     },

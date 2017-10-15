@@ -1,30 +1,27 @@
 /**
  * Created by jayakornkarikan on 10/13/2017 AD.
  */
-/**
- * Created by jayakornkarikan on 10/12/2017 AD.
- */
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, TouchableWithoutFeedback } from 'react-native';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
-import DismissKeyboard from 'dismissKeyboard';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 
 export default class Home extends React.Component {
     render() {
         return (
-            <TouchableWithoutFeedback onPress={()=>{DismissKeyboard()}}>
                 <View style={styles.container}>
-                    <View style={styles.group}>
-                        <FloatLabelTextInput placeholder={"Email"} autoFocus={true} autoCapitalize={'none'} autoCorrect={false} returnKeyType={'next'}/>
-                    </View>
+                        <TextInput style={styles.input}
+                                   placeholder={"Email"}
+                                   placeholderTextColor={'rgba(255, 255, 255,0.6)'}
+                                   autoFocus={true}
+                                   autoCapitalize={'none'}
+                                   autoCorrect={false}
+                                   returnKeyType={'next'}/>
                     <TouchableOpacity style={[styles.button,{backgroundColor: '#3E5893'}]} onPress={() => this.props.navigator.pop()}>
                         <Text style={styles.textBtn}>Submit</Text>
                     </TouchableOpacity>
                     <KeyboardSpacer />
                 </View>
-            </TouchableWithoutFeedback>
         );
     }
 }
@@ -32,9 +29,8 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        padding: 10,
+        backgroundColor: 'rgba(175, 214, 240,1.0)',
+        padding: 20,
         paddingTop: 75,
     },
     logo:{
@@ -44,13 +40,12 @@ const styles = StyleSheet.create({
     },
     textBtn: {
         fontSize: 15,
-        color: '#fff'
+        color: '#fff',
+        textAlign: 'center',
+        fontWeight: '700'
     },
     button: {
-        padding: 10,
-        margin: 5,
-        borderRadius: 3,
-        marginTop: 10
+        padding: 10
     },
     group: {
         flexDirection: 'row',
@@ -58,5 +53,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: 280,
         paddingTop: 20
+    },
+    input: {
+        height: 40,
+        backgroundColor: 'rgba(255, 255, 255,0.2)',
+        marginBottom: 10,
+        color: '#FFF',
+        paddingHorizontal: 10
     }
 });
